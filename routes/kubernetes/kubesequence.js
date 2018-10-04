@@ -26,11 +26,16 @@ router.get("/sequence", (request, response) => {
           nodes: listNode
         };
         return new Promise(function (resolve, reject) {
+
           for (i = 0; i < resp.body.items.length; i++) {
+
+            if (resp.body.items[i].metadata.labels.type = "prometheus-jiva" && resp.body.items[i].metadata.name.includes("cstor")){
+
             pvcNodeDetails.pvc.push({
               name: resp.body.items[i].metadata.name,
               volumeName: resp.body.items[i].spec.volumeName
             });
+          }
           }
           resolve(pvcNodeDetails);
         }).then(pvcNodeDetails => {
@@ -61,7 +66,8 @@ router.get("/sequence", (request, response) => {
                 }
                 if (
                   res.body.items[i].metadata.labels.type ==
-                  "workload"
+                  "workload" && res.body.items[i].metadata.labels.name ==
+                  "openebs-prometheus-server"
                 ) {
                   console.log(res.body.items[i].spec.volumes[0]);
 

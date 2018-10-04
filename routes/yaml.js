@@ -7,8 +7,8 @@ router.get('/yaml', (req, res) => {
         status: 200, 
         workloadName: "prometheus",
         openebsEngine:"cstor",
-        nameSpaceyaml: "https://github.com/openebs/e2e-infrastructure/blob/816ae44f1bd9c886ce506a72b542edcb323a50b3/production/mongo-cstor/mongo-cstor-namespace.yaml",
-        workloadyaml:"https://github.com/openebs/e2e-infrastructure/blob/816ae44f1bd9c886ce506a72b542edcb323a50b3/production/mongo-cstor/mongo-cstor-mongo.yaml"
+        nameSpaceyaml: "https://github.com/openebs/e2e-infrastructure/blob/4c5c1761d8b710d16d755aece92eb2539eed73d6/production/prometheus-cstor/prometheus-cstor-namespace.yaml",
+        workloadyaml:"https://github.com/openebs/e2e-infrastructure/blob/4c5c1761d8b710d16d755aece92eb2539eed73d6/production/prometheus-cstor/openebs-monitoring-org.yaml"
  });
 });
 
