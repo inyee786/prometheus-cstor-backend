@@ -32,15 +32,16 @@ http.get(options, function (err, resp, body) {
         console.log(data);
 
         for (i = 0; i < data.items.length; i++) {
-            if (data.items[i].metadata.name.includes(applicationDeployedNamespaces))
+            if (data.items[i].spec.casType == "cstor") {
                 mayaVolume.push({
                     name: data.items[i].metadata.name,
                     size: data.items[i].metadata.annotations['openebs.io/volume-size'],
                     status: data.items[i].metadata.annotations['openebs.io/controller-status'],
-                    replicas: data.items[i].spec.replicas,
+                    replicas: data.items[i].metadata.annotations['openebs.io/replica-count'],
                     kind: data.items[i].kind,
                     castype: data.items[i].spec.casType
                 });
+            }
         }
         console.log(mayaVolume);
     }
@@ -72,7 +73,7 @@ router.get('/volume', (req, res) => {
                         name: data.items[i].metadata.name,
                         size: data.items[i].metadata.annotations['openebs.io/volume-size'],
                         status: data.items[i].metadata.annotations['openebs.io/controller-status'],
-                        replicas: data.items[i].spec.replicas,
+                        replicas: data.items[i].metadata.annotations['openebs.io/replica-count'],
                         kind: data.items[i].kind,
                         castype: data.items[i].spec.casType
                     });
